@@ -3,13 +3,13 @@ package controllers
 import play.api._
 import play.api.mvc._
 import play.api.libs.ws._
-
 import play.api.templates.Html
 import scala.io.Source
 import scala.util.parsing.json.JSON
 import play.api.libs.json.JsValue
 import play.api.libs.json.Format
 import play.api.libs.json.JsUndefined
+import models.Repo
 
 // case class Event(id: String, time: Long, rsvp: Int, title: String, description: String) {
 //   def descriptionHtml = new Html(description)
@@ -20,6 +20,10 @@ object Application extends Controller { //
 //  with securesocial.core.SecureSocial{
   
   def index = Action { implicit request =>
+    import models.Repo
+    
+    Repo.getReposRawJson()
+//    Ok(views.html.index("Git Hub Repos [test]", ""))
     Ok(views.html.index("Scala.IO", "" ))
   }
 
